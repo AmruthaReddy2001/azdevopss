@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure Pass - Sponsorship(3f08ddbb-bcd2-443b-b87d-cd9ee5c47937)'
+    subscriptionId: '3f08ddbb-bcd2-443b-b87d-cd9ee5c47937'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'amrutha-rg'
+    location: 'East US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/AmruthaReddy2001/azdevopss/main/arm.json'
+    overrideParameters: '-projectName devops'
+    deploymentMode: 'Incremental'
+    deploymentName: 'devopsaz'
